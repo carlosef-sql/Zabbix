@@ -1,0 +1,570 @@
+{
+    "zabbix_export": {
+        "version": "6.0",
+        "date": "2022-04-15T14:39:31Z",
+        "groups": [
+            {
+                "uuid": "7df96b18c230490a9a0a9e2307226338",
+                "name": "Templates"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "524f8b4a8b784166bc0edf1d872b5ab1",
+                "template": "Template Customizado - DVR Intelbras 32 Canais",
+                "name": "Template Customizado - DVR Intelbras 32 Canais",
+                "groups": [
+                    {
+                        "name": "Templates"
+                    }
+                ],
+                "items": [
+                    {
+                        "uuid": "04f6cea326be4ad3a459ae2002e65789",
+                        "name": "Camera 01",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.1",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.1",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "06d93fc9393e478dacd084c3eea15845",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.1,1d)=0",
+                                "name": "Camera 01 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "6a74d72a5a7a4cf6aa3dfa69fc45ba09",
+                        "name": "Camera 02",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.2",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.2",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "2b916cb0675b4c08ab4d7daec58a5ead",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.2,1d)=0",
+                                "name": "Camera 02 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "1b4442c5508243acb7a7c1bd492d24cc",
+                        "name": "Camera 03",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.3",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.3",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "850e4f72206444549966050fb2eb7d36",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.3,1d)=0",
+                                "name": "Camera 03 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "b4cc06aa104949388654775c4a28cbf3",
+                        "name": "Camera 04",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.4",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.4",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "7299dce43433499c9d8493d4509d9b39",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.4,1d)=0",
+                                "name": "Camera 04 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "20edadb5372648adb8d1df6a4c54de3a",
+                        "name": "Camera 05",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.5",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.5",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "354975031ae04399bda947b7f9701095",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.5,1d)=0",
+                                "name": "Camera 05 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "b919d9f8b32a4152a793e518d2dcef48",
+                        "name": "Camera 06",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.6",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.6",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "4ba9b23760ce44bca1b0fb17ab3fcdae",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.6,1d)=0",
+                                "name": "Camera 06 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "eced206854864ee981c8b4114f0adc98",
+                        "name": "Camera 07",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.7",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.7",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "8f539d06eb8848428ee85f03ebbec677",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.7,1d)=0",
+                                "name": "Camera 07 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "918478bd91774f0cb357b59bdc37dfdb",
+                        "name": "Camera 08",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.8",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.8",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "f843f8403d894032b97eb3547dcb3a87",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.8,1d)=0",
+                                "name": "Camera 08 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "23700ce4551047a7bc639b633e393e57",
+                        "name": "Camera 09",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.9",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.9",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "8fc490de49df4c01a79cb71e26c3e60a",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.9,1d)=0",
+                                "name": "Camera 09 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "ecd903d86dc44de2931930f6684a4f5e",
+                        "name": "Camera 10",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.10",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.10",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "663666b88737472ba729581a5c227499",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.10,1d)=0",
+                                "name": "Camera 10 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "ffa8d9112fb7441ea5a1364e634ea11d",
+                        "name": "Camera 11",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.11",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.11",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "809c4624978b4ca58c18b6dbe5cdbc66",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.11,1d)=0",
+                                "name": "Camera 11 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "c86990ebc36741499913db9cedcdb023",
+                        "name": "Camera 12",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.12",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.12",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "3811eff537ba4f5aa22fcca8761ff358",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.12,1d)=0",
+                                "name": "Camera 12 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "318f302e0bfe48e69e4686372caeefcf",
+                        "name": "Camera 13",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.13",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.13",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "72a8be3ac78d4775a4afe4e2dc6c7e22",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.13,1d)=0",
+                                "name": "Camera 13 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "fbba82b23d4d456486b74e56802116cc",
+                        "name": "Camera 14",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.14",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.14",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "974d93b21f07455288bda9d5127df883",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.14,1d)=0",
+                                "name": "Camera 14 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "ad55b9962dec48c3a6bf3f49992494e0",
+                        "name": "Camera 15",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.15",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.15",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "f463f11d18c543a8bcfa0c633687960f",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.15,1d)=0",
+                                "name": "Camera 15 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "338033554d59496eb3236faf949edfbf",
+                        "name": "Camera 16",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.16",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.16",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "c80852be87b64b2da68138263547daed",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.16,1d)=0",
+                                "name": "Camera 16 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "186759e3289d46c393be80a2e09e7ced",
+                        "name": "Camera 17",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.17",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.17",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "f38dca3899dd48c390203957ea280f29",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.17,1d)=0",
+                                "name": "Camera 17 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "6c017a9f875f4fe5b10eeb5e6c13fa42",
+                        "name": "Camera 18",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.18",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.18",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "b57ae7a1abc943a0a6d746672b612b06",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.18,1d)=0",
+                                "name": "Camera 18 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "fb5f01b7227b45a9b7f1c62d4ef8055e",
+                        "name": "Camera 19",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.19",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.19",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "4f01422e88a14e45a2be130bb22846df",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.19,1d)=0",
+                                "name": "Camera 19 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "24056e8480f648f99a88dacfa93d11b9",
+                        "name": "Camera 20",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.20",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.20",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "290193470d8041719f5d6414239490db",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.20,1d)=0",
+                                "name": "Camera 20 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "2d6640884e144d77964b660ed6c4fe1f",
+                        "name": "Camera 21",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.21",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.21",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "e9810db4658e42ecb0913a0561ed0005",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.21,1d)=0",
+                                "name": "Camera 21 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "dc4703cacf944181bca6ac8f255c114d",
+                        "name": "Camera 22",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.22",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.22",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "f9c1292f50d244b58babd59eb734c93c",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.22,1d)=0",
+                                "name": "Camera 22 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "cd6560222c7542339b14ad675f4c30b0",
+                        "name": "Camera 23",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.23",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.23",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "324a9e6a137d4ccfb4be1d7063af7c4d",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.23,1d)=0",
+                                "name": "Camera 23 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "b57ddbcc5a1240d2b0d9361628a2616a",
+                        "name": "Camera 24",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.24",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.24",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "c30b27d471f1409aa2deccd81ac212d1",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.24,1d)=0",
+                                "name": "Camera 24 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "0c3c32b3f3a6466d833e1deff4d16b0f",
+                        "name": "Camera 25",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.25",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.25",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "17ec4d34224643b0ae8d370fd81f0622",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.25,1d)=0",
+                                "name": "Camera 25 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "3df400ff7c0645299ce939c9ea52fa50",
+                        "name": "Camera 26",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.26",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.26",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "c47cd061e3714eed8c8f3fcb53512d94",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.26,1d)=0",
+                                "name": "Camera 26 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "f8ce3daa447e405094891aeaffcd28f9",
+                        "name": "Camera 27",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.27",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.27",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "3d05949fe77c4d5e96de6bb5bf1413ad",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.27,1d)=0",
+                                "name": "Camera 27 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "44383e6d3bb14728abfea2fccf2d3307",
+                        "name": "Camera 28",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.28",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.28",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "02b7ba9ad2f54b40b2f2d41377c42bd7",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.28,1d)=0",
+                                "name": "Camera 28 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "d6696386e5354510bbde3aac92773527",
+                        "name": "Camera 29",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.29",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.29",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "6cc3895605b74a8c9f85f59b33839c35",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.29,1d)=0",
+                                "name": "Camera 29 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "556ce0c853544044bc02ff82e950da26",
+                        "name": "Camera 30",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.30",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.30",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "16307b4debb04c7a8e67e69cddb5c2a9",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.30,1d)=0",
+                                "name": "Camera 30 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "eba45ddc9e444b49a0a0cec4b0866f01",
+                        "name": "Camera 31",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.31",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.31",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "076549e9e2a04e85ab4761b6d3113db9",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.31,1d)=0",
+                                "name": "Camera 31 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "4b77b69d26384c2cb142cb35ad0a3ac0",
+                        "name": "Camera 32",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.32",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.32",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "c98daca1c3d34dcd99c5929f3dae3491",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 32 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.32,1d)=0",
+                                "name": "Camera 32 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

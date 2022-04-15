@@ -1,0 +1,1487 @@
+{
+    "zabbix_export": {
+        "version": "6.0",
+        "date": "2022-04-15T14:35:23Z",
+        "groups": [
+            {
+                "uuid": "e960332b3f6c46a1956486d4f3f99fce",
+                "name": "Templates/Server hardware"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "eb26e3f1efa04483a6c378d78397193f",
+                "template": "Template Customizado - Server Dell iDRAC SNMP",
+                "name": "Template Customizado - Server Dell iDRAC SNMP",
+                "description": "Template Server iDRAC\n\nMIBs used:\nIDRAC-MIB-SMIv2\n\nTemplate tooling version used: 0.36",
+                "templates": [
+                    {
+                        "name": "Template Module Generic SNMP"
+                    }
+                ],
+                "groups": [
+                    {
+                        "name": "Templates/Server hardware"
+                    }
+                ],
+                "items": [
+                    {
+                        "uuid": "56822e67b585451b93663a5bf629742f",
+                        "name": "Firmware version",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.674.10892.5.1.1.8.0",
+                        "key": "system.hw.firmware",
+                        "delay": "1h",
+                        "history": "2w",
+                        "trends": "0",
+                        "value_type": "CHAR",
+                        "description": "MIB: IDRAC-MIB-SMIv2\nThis attribute defines the firmware version of a remote access card.",
+                        "preprocessing": [
+                            {
+                                "type": "DISCARD_UNCHANGED_HEARTBEAT",
+                                "parameters": [
+                                    "1d"
+                                ]
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Inventory"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "bafc8fb4a72b4c0e844c55fcf48bed31",
+                                "expression": "(last(/Template Customizado - Server Dell iDRAC SNMP/system.hw.firmware,#1)<>last(/Template Customizado - Server Dell iDRAC SNMP/system.hw.firmware,#2))=1 and length(last(/Template Customizado - Server Dell iDRAC SNMP/system.hw.firmware))>0",
+                                "name": "Firmware has changed",
+                                "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                "priority": "INFO",
+                                "description": "Firmware version has changed. Ack to close",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "7a53e274c8304941974d9af3fcd9a634",
+                        "name": "Hardware model name",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.674.10892.5.1.3.12.0",
+                        "key": "system.hw.model",
+                        "delay": "1h",
+                        "history": "2w",
+                        "trends": "0",
+                        "value_type": "CHAR",
+                        "description": "MIB: IDRAC-MIB-SMIv2\nThis attribute defines the model name of the system.",
+                        "inventory_link": "MODEL",
+                        "preprocessing": [
+                            {
+                                "type": "DISCARD_UNCHANGED_HEARTBEAT",
+                                "parameters": [
+                                    "1d"
+                                ]
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Inventory"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "b91a2fa9601744c691dd3b778c7794a1",
+                        "name": "Hardware serial number",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.674.10892.5.1.3.2.0",
+                        "key": "system.hw.serialnumber",
+                        "delay": "1h",
+                        "history": "2w",
+                        "trends": "0",
+                        "value_type": "CHAR",
+                        "description": "MIB: IDRAC-MIB-SMIv2\nThis attribute defines the service tag of the system.",
+                        "inventory_link": "SERIALNO_A",
+                        "preprocessing": [
+                            {
+                                "type": "DISCARD_UNCHANGED_HEARTBEAT",
+                                "parameters": [
+                                    "1d"
+                                ]
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Inventory"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "3a37eed1bc6f40d480ac38f19320f61d",
+                                "expression": "(last(/Template Customizado - Server Dell iDRAC SNMP/system.hw.serialnumber,#1)<>last(/Template Customizado - Server Dell iDRAC SNMP/system.hw.serialnumber,#2))=1 and length(last(/Template Customizado - Server Dell iDRAC SNMP/system.hw.serialnumber))>0",
+                                "name": "Device has been replaced (new serial number received)",
+                                "priority": "INFO",
+                                "description": "Device serial number has changed. Ack to close",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "129fd64fdc37498495535c23fd89509e",
+                        "name": "Overall system health status",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.674.10892.5.2.1.0",
+                        "key": "system.status[globalSystemStatus.0]",
+                        "delay": "30s",
+                        "history": "2w",
+                        "trends": "0d",
+                        "description": "MIB: IDRAC-MIB-SMIv2\nThis attribute defines the overall rollup status of all components in the system being monitored by the remote access card. Includes system, storage, IO devices, iDRAC, CPU, memory, etc.",
+                        "valuemap": {
+                            "name": "IDRAC-MIB-SMIv2::ObjectStatusEnum"
+                        },
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Status"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "e1a197605bb3473494603293c603bf82",
+                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.status[globalSystemStatus.0],#1,\"eq\",\"{$HEALTH_DISASTER_STATUS}\")=1",
+                                "name": "System is in unrecoverable state!",
+                                "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                "priority": "HIGH",
+                                "description": "Please check the device for faults"
+                            },
+                            {
+                                "uuid": "12ede23cd21040ea9cc79e551493bac6",
+                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.status[globalSystemStatus.0],#1,\"eq\",\"{$HEALTH_CRIT_STATUS}\")=1",
+                                "name": "System status is in critical state",
+                                "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                "priority": "HIGH",
+                                "description": "Please check the device for errors",
+                                "dependencies": [
+                                    {
+                                        "name": "System is in unrecoverable state!",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.status[globalSystemStatus.0],#1,\"eq\",\"{$HEALTH_DISASTER_STATUS}\")=1"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "c78b13a1a95f455db806853bf4b996a6",
+                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.status[globalSystemStatus.0],#1,\"eq\",\"{$HEALTH_WARN_STATUS}\")=1",
+                                "name": "System status is in warning state",
+                                "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                "priority": "HIGH",
+                                "description": "Please check the device for warnings",
+                                "dependencies": [
+                                    {
+                                        "name": "System is in unrecoverable state!",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.status[globalSystemStatus.0],#1,\"eq\",\"{$HEALTH_DISASTER_STATUS}\")=1"
+                                    },
+                                    {
+                                        "name": "System status is in critical state",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.status[globalSystemStatus.0],#1,\"eq\",\"{$HEALTH_CRIT_STATUS}\")=1"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "discovery_rules": [
+                    {
+                        "uuid": "7fc8dcc44f6d4da08b763fd862292cce",
+                        "name": "Array Controller Cache Discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#BATTERY_NUM},1.3.6.1.4.1.674.10892.5.5.1.20.130.15.1.1]",
+                        "key": "array.cache.discovery",
+                        "delay": "1h",
+                        "description": "IDRAC-MIB-SMIv2::batteryTable",
+                        "item_prototypes": [
+                            {
+                                "uuid": "00fca648ff1148738ff44122b21fdbe9",
+                                "name": "Battery {#BATTERY_NUM}: Disk array cache controller battery status",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.130.15.1.4.{#SNMPINDEX}",
+                                "key": "system.hw.diskarray.cache.battery.status[batteryState.{#SNMPINDEX}]",
+                                "history": "1w",
+                                "trends": "0d",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nCurrent state of battery.\nPossible values:\n1: The current state could not be determined.\n2: The battery is operating normally.\n3: The battery has failed and needs to be replaced.\n4: The battery temperature is high or charge level is depleting.\n5: The battery is missing or not detected.\n6: The battery is undergoing the re-charge phase.\n7: The battery voltage or charge level is below the threshold.",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::batteryState"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Disk arrays"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "faa5a98558df47efb8929d373c0d8fe2",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.diskarray.cache.battery.status[batteryState.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_ARRAY_CACHE_BATTERY_CRIT_STATUS}\")=1",
+                                        "name": "Battery {#BATTERY_NUM}: Disk array cache controller battery is in critical state!",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "AVERAGE",
+                                        "description": "Please check the device for faults"
+                                    },
+                                    {
+                                        "uuid": "cbcb33b3d7f545269bccec1032410c49",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.diskarray.cache.battery.status[batteryState.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_ARRAY_CACHE_BATTERY_WARN_STATUS}\")=1",
+                                        "name": "Battery {#BATTERY_NUM}: Disk array cache controller battery is in warning state",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "WARNING",
+                                        "description": "Please check the device for faults",
+                                        "dependencies": [
+                                            {
+                                                "name": "Battery {#BATTERY_NUM}: Disk array cache controller battery is in critical state!",
+                                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.diskarray.cache.battery.status[batteryState.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_ARRAY_CACHE_BATTERY_CRIT_STATUS}\")=1"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uuid": "caea234fc95f4fdf877c62a074708841",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.diskarray.cache.battery.status[batteryState.{#SNMPINDEX}],#1,\"ne\",\"{$DISK_ARRAY_CACHE_BATTERY_OK_STATUS}\")=1",
+                                        "name": "Battery {#BATTERY_NUM}: Disk array cache controller battery is not in optimal state",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "WARNING",
+                                        "description": "Please check the device for faults",
+                                        "dependencies": [
+                                            {
+                                                "name": "Battery {#BATTERY_NUM}: Disk array cache controller battery is in critical state!",
+                                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.diskarray.cache.battery.status[batteryState.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_ARRAY_CACHE_BATTERY_CRIT_STATUS}\")=1"
+                                            },
+                                            {
+                                                "name": "Battery {#BATTERY_NUM}: Disk array cache controller battery is in warning state",
+                                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.diskarray.cache.battery.status[batteryState.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_ARRAY_CACHE_BATTERY_WARN_STATUS}\")=1"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "db6c007e20f14aecbb85492d1f68eee6",
+                        "name": "FAN Discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},1.3.6.1.4.1.674.10892.5.4.700.12.1.5,{#FAN_DESCR},1.3.6.1.4.1.674.10892.5.4.700.12.1.8,{#TYPE},1.3.6.1.4.1.674.10892.5.4.700.12.1.7]",
+                        "key": "fan.discovery",
+                        "delay": "1h",
+                        "filter": {
+                            "conditions": [
+                                {
+                                    "macro": "{#TYPE}",
+                                    "value": "3",
+                                    "formulaid": "A"
+                                }
+                            ]
+                        },
+                        "description": "IDRAC-MIB-SMIv2::coolingDeviceTable",
+                        "item_prototypes": [
+                            {
+                                "uuid": "f17ed8f30331498fb6975640b434df29",
+                                "name": "{#FAN_DESCR}: Fan speed",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.4.700.12.1.6.{#SNMPINDEX}",
+                                "key": "sensor.fan.speed[coolingDeviceReading.{#SNMPINDEX}]",
+                                "units": "rpm",
+                                "description": "MIB: IDRAC-MIB-SMIv2\n0700.0012.0001.0006 This attribute defines the reading for a cooling device\nof subtype other than coolingDeviceSubTypeIsDiscrete.  When the value\nfor coolingDeviceSubType is other than coolingDeviceSubTypeIsDiscrete, the\nvalue returned for this attribute is the speed in RPM or the OFF/ON value\nof the cooling device.  When the value for coolingDeviceSubType is\ncoolingDeviceSubTypeIsDiscrete, a value is not returned for this attribute.",
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Fans"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "79ab7dcb19d2467e9cc019e458d23942",
+                                "name": "{#FAN_DESCR}: Fan status",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.4.700.12.1.5.{#SNMPINDEX}",
+                                "key": "sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}]",
+                                "delay": "3m",
+                                "history": "2w",
+                                "trends": "0d",
+                                "description": "MIB: IDRAC-MIB-SMIv2\n0700.0012.0001.0005 This attribute defines the probe status of the cooling device.",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::StatusProbeEnum"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Fans"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "1251d6be2d2846df9b9fcead8dd3d5a7",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}],#1,\"eq\",\"{$FAN_CRIT_STATUS:\\\"criticalUpper\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}],#1,\"eq\",\"{$FAN_CRIT_STATUS:\\\"nonRecoverableUpper\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}],#1,\"eq\",\"{$FAN_CRIT_STATUS:\\\"criticalLower\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}],#1,\"eq\",\"{$FAN_CRIT_STATUS:\\\"nonRecoverableLower\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}],#1,\"eq\",\"{$FAN_CRIT_STATUS:\\\"failed\\\"}\")=1",
+                                        "name": "{#FAN_DESCR}: Fan is in critical state",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "AVERAGE",
+                                        "description": "Please check the fan unit"
+                                    },
+                                    {
+                                        "uuid": "97ae46a663ca413a8dc279907c3a94ed",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}],#1,\"eq\",\"{$FAN_WARN_STATUS:\\\"nonCriticalUpper\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}],#1,\"eq\",\"{$FAN_WARN_STATUS:\\\"nonCriticalLower\\\"}\")=1",
+                                        "name": "{#FAN_DESCR}: Fan is in warning state",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "WARNING",
+                                        "description": "Please check the fan unit",
+                                        "dependencies": [
+                                            {
+                                                "name": "{#FAN_DESCR}: Fan is in critical state",
+                                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}],#1,\"eq\",\"{$FAN_CRIT_STATUS:\\\"criticalUpper\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}],#1,\"eq\",\"{$FAN_CRIT_STATUS:\\\"nonRecoverableUpper\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}],#1,\"eq\",\"{$FAN_CRIT_STATUS:\\\"criticalLower\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}],#1,\"eq\",\"{$FAN_CRIT_STATUS:\\\"nonRecoverableLower\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/sensor.fan.status[coolingDeviceStatus.{#SNMPINDEX}],#1,\"eq\",\"{$FAN_CRIT_STATUS:\\\"failed\\\"}\")=1"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "a650fb1301f849e9a300b5c3772d894a",
+                        "name": "Array Controller Discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},1.3.6.1.4.1.674.10892.5.5.1.20.130.1.1.38,{#CNTLR_NAME},1.3.6.1.4.1.674.10892.5.5.1.20.130.1.1.79]",
+                        "key": "physicaldisk.arr.discovery",
+                        "delay": "1h",
+                        "description": "IDRAC-MIB-SMIv2::controllerTable",
+                        "item_prototypes": [
+                            {
+                                "uuid": "f988188578574fe5932585cae84698e1",
+                                "name": "{#CNTLR_NAME}: Disk array controller model",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.130.1.1.2.{#SNMPINDEX}",
+                                "key": "system.hw.diskarray.model[controllerName.{#SNMPINDEX}]",
+                                "delay": "1d",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe controller's name as represented in Storage Management.",
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Disk arrays"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "65e5d23901e44328b0074169da8161b0",
+                                "name": "{#CNTLR_NAME}: Disk array controller status",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.130.1.1.38.{#SNMPINDEX}",
+                                "key": "system.hw.diskarray.status[controllerComponentStatus.{#SNMPINDEX}]",
+                                "history": "1w",
+                                "trends": "0d",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe status of the controller itself without the propagation of any contained component status.\nPossible values:\n1: Other\n2: Unknown\n3: OK\n4: Non-critical\n5: Critical\n6: Non-recoverable",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::ObjectStatusEnum"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Disk arrays"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "982e624737df4dc883f9761562bc9565",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.diskarray.status[controllerComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_ARRAY_CRIT_STATUS:\\\"critical\\\"}\")=1",
+                                        "name": "{#CNTLR_NAME}: Disk array controller is in critical state",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "HIGH",
+                                        "description": "Please check the device for faults",
+                                        "dependencies": [
+                                            {
+                                                "name": "{#CNTLR_NAME}: Disk array controller is in unrecoverable state!",
+                                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.diskarray.status[controllerComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_ARRAY_FAIL_STATUS:\\\"nonRecoverable\\\"}\")=1"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uuid": "0dfac7286c1c4033b6e0a8c520829311",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.diskarray.status[controllerComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_ARRAY_FAIL_STATUS:\\\"nonRecoverable\\\"}\")=1",
+                                        "name": "{#CNTLR_NAME}: Disk array controller is in unrecoverable state!",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "DISASTER",
+                                        "description": "Please check the device for faults"
+                                    },
+                                    {
+                                        "uuid": "4df796b9793f42008db8e9a4fd9628ad",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.diskarray.status[controllerComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_ARRAY_WARN_STATUS:\\\"nonCritical\\\"}\")=1",
+                                        "name": "{#CNTLR_NAME}: Disk array controller is in warning state",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "AVERAGE",
+                                        "description": "Please check the device for faults",
+                                        "dependencies": [
+                                            {
+                                                "name": "{#CNTLR_NAME}: Disk array controller is in critical state",
+                                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.diskarray.status[controllerComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_ARRAY_CRIT_STATUS:\\\"critical\\\"}\")=1"
+                                            },
+                                            {
+                                                "name": "{#CNTLR_NAME}: Disk array controller is in unrecoverable state!",
+                                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.diskarray.status[controllerComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_ARRAY_FAIL_STATUS:\\\"nonRecoverable\\\"}\")=1"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "12c26254c3a240b2a1c81f93fd7ce3b8",
+                        "name": "Physical Disk Discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},1.3.6.1.4.1.674.10892.5.5.1.20.130.4.1.1,{#DISK_NAME},1.3.6.1.4.1.674.10892.5.5.1.20.130.4.1.2]",
+                        "key": "physicaldisk.discovery",
+                        "delay": "1h",
+                        "description": "IDRAC-MIB-SMIv2::physicalDiskTable",
+                        "item_prototypes": [
+                            {
+                                "uuid": "f83e4e5dec2f4853985663ae6b964bbe",
+                                "name": "{#DISK_NAME}: Physical disk media type",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.130.4.1.35.{#SNMPINDEX}",
+                                "key": "system.hw.physicaldisk.media_type[physicalDiskMediaType.{#SNMPINDEX}]",
+                                "delay": "1h",
+                                "history": "2w",
+                                "trends": "0d",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe media type of the physical disk. Possible Values:\n1: The media type could not be determined.\n2: Hard Disk Drive (HDD).\n3: Solid State Drive (SSD).",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::physicalDiskMediaType"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Physical disks"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "7a5390330a0d47efaf44cb8e10ce9afe",
+                                "name": "{#DISK_NAME}: Physical disk model name",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.130.4.1.6.{#SNMPINDEX}",
+                                "key": "system.hw.physicaldisk.model[physicalDiskProductID.{#SNMPINDEX}]",
+                                "delay": "1h",
+                                "history": "2w",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe model number of the physical disk.",
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Physical disks"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "c8b58ed12c644b2db1feb2be61f9920e",
+                                "name": "{#DISK_NAME}: Physical disk part number",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.130.4.1.27.{#SNMPINDEX}",
+                                "key": "system.hw.physicaldisk.part_number[physicalDiskPartNumber.{#SNMPINDEX}]",
+                                "delay": "1h",
+                                "history": "2w",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe part number of the disk.",
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Physical disks"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "75d89a8483e64ec2b45c798bb5b2759f",
+                                "name": "{#DISK_NAME}: Physical disk serial number",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.130.4.1.7.{#SNMPINDEX}",
+                                "key": "system.hw.physicaldisk.serialnumber[physicalDiskSerialNo.{#SNMPINDEX}]",
+                                "delay": "1d",
+                                "trends": "0",
+                                "value_type": "CHAR",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe physical disk's unique identification number from the manufacturer.",
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Physical disks"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "8955b174fcd84bfd9fae09929158498d",
+                                        "expression": "(last(/Template Customizado - Server Dell iDRAC SNMP/system.hw.physicaldisk.serialnumber[physicalDiskSerialNo.{#SNMPINDEX}],#1)<>last(/Template Customizado - Server Dell iDRAC SNMP/system.hw.physicaldisk.serialnumber[physicalDiskSerialNo.{#SNMPINDEX}],#2))=1 and length(last(/Template Customizado - Server Dell iDRAC SNMP/system.hw.physicaldisk.serialnumber[physicalDiskSerialNo.{#SNMPINDEX}]))>0",
+                                        "name": "{#DISK_NAME}: Disk has been replaced (new serial number received)",
+                                        "priority": "INFO",
+                                        "description": "Disk serial number has changed. Ack to close",
+                                        "manual_close": "YES"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "f59b16c3df38432d88b0720d46a656fe",
+                                "name": "{#DISK_NAME}: Disk size",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.130.4.1.11.{#SNMPINDEX}",
+                                "key": "system.hw.physicaldisk.size[physicalDiskCapacityInMB.{#SNMPINDEX}]",
+                                "delay": "1h",
+                                "history": "2w",
+                                "trends": "0d",
+                                "units": "B",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe size of the physical disk in megabytes.",
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1048576"
+                                        ]
+                                    }
+                                ],
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Physical disks"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "10db78ff19834b10965863ae408ec89c",
+                                "name": "{#DISK_NAME}: Physical disk S.M.A.R.T. status",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.130.4.1.31.{#SNMPINDEX}",
+                                "key": "system.hw.physicaldisk.smart_status[physicalDiskSmartAlertIndication.{#SNMPINDEX}]",
+                                "delay": "3m",
+                                "trends": "0d",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nIndicates whether the physical disk has received a predictive failure alert.",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::BooleanType"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Physical disks"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "3754eba786b440dbbcf176f037fc30f8",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.physicaldisk.smart_status[physicalDiskSmartAlertIndication.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_SMART_FAIL_STATUS}\")=1",
+                                        "name": "{#DISK_NAME}: Physical disk S.M.A.R.T. failed",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "HIGH",
+                                        "description": "Disk probably requires replacement.",
+                                        "dependencies": [
+                                            {
+                                                "name": "{#DISK_NAME}: Physical disk failed",
+                                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.physicaldisk.status[physicalDiskComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_FAIL_STATUS:\\\"critical\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.physicaldisk.status[physicalDiskComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_FAIL_STATUS:\\\"nonRecoverable\\\"}\")=1"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "ab524b4cf787420bb0be8843caa8265e",
+                                "name": "{#DISK_NAME}: Physical disk status",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.130.4.1.24.{#SNMPINDEX}",
+                                "key": "system.hw.physicaldisk.status[physicalDiskComponentStatus.{#SNMPINDEX}]",
+                                "delay": "3m",
+                                "trends": "0d",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe status of the physical disk itself without the propagation of any contained component status.\nPossible values:\n1: Other\n2: Unknown\n3: OK\n4: Non-critical\n5: Critical\n6: Non-recoverable",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::physicalDiskComponentStatus"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Physical disks"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "89240dd08ae141d6a3e934dd5ea590fc",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.physicaldisk.status[physicalDiskComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_FAIL_STATUS:\\\"critical\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.physicaldisk.status[physicalDiskComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_FAIL_STATUS:\\\"nonRecoverable\\\"}\")=1",
+                                        "name": "{#DISK_NAME}: Physical disk failed",
+                                        "opdata": "Current status: {ITEM.LASTVALUE1}",
+                                        "priority": "HIGH",
+                                        "description": "Please check physical disk for warnings or errors"
+                                    },
+                                    {
+                                        "uuid": "5fcb0d6ec91c46ef90e4a832cf1dee65",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.physicaldisk.status[physicalDiskComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_WARN_STATUS:\\\"nonCritical\\\"}\")=1",
+                                        "name": "{#DISK_NAME}: Physical disk is in warning state",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "WARNING",
+                                        "description": "Please check physical disk for warnings or errors",
+                                        "dependencies": [
+                                            {
+                                                "name": "{#DISK_NAME}: Physical disk failed",
+                                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.physicaldisk.status[physicalDiskComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_FAIL_STATUS:\\\"critical\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.physicaldisk.status[physicalDiskComponentStatus.{#SNMPINDEX}],#1,\"eq\",\"{$DISK_FAIL_STATUS:\\\"nonRecoverable\\\"}\")=1"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "57f97d2b9eb94b4a8bd4038edffc031e",
+                        "name": "PSU Discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},1.3.6.1.4.1.674.10892.5.4.600.12.1.5,{#PSU_DESCR},1.3.6.1.4.1.674.10892.5.4.600.12.1.8]",
+                        "key": "psu.discovery",
+                        "delay": "1h",
+                        "description": "IDRAC-MIB-SMIv2::powerSupplyTable",
+                        "item_prototypes": [
+                            {
+                                "uuid": "1306fecaecfc4994b36f66dcc4854c87",
+                                "name": "{#PSU_DESCR}: Power supply status",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.4.600.12.1.5.{#SNMPINDEX}",
+                                "key": "sensor.psu.status[powerSupplyStatus.{#SNMPINDEX}]",
+                                "delay": "3m",
+                                "history": "2w",
+                                "trends": "0d",
+                                "description": "MIB: IDRAC-MIB-SMIv2\n0600.0012.0001.0005 This attribute defines the status of the power supply.",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::ObjectStatusEnum"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Power supply"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "6ad54b639d384dde8b382169705e735c",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/sensor.psu.status[powerSupplyStatus.{#SNMPINDEX}],#1,\"eq\",\"{$PSU_CRIT_STATUS:\\\"critical\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/sensor.psu.status[powerSupplyStatus.{#SNMPINDEX}],#1,\"eq\",\"{$PSU_CRIT_STATUS:\\\"nonRecoverable\\\"}\")=1",
+                                        "name": "{#PSU_DESCR}: Power supply is in critical state",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "AVERAGE",
+                                        "description": "Please check the power supply unit for errors"
+                                    },
+                                    {
+                                        "uuid": "94d6f057e2b846aaa17424bfe8e005f3",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/sensor.psu.status[powerSupplyStatus.{#SNMPINDEX}],#1,\"eq\",\"{$PSU_WARN_STATUS:\\\"nonCritical\\\"}\")=1",
+                                        "name": "{#PSU_DESCR}: Power supply is in warning state",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "WARNING",
+                                        "description": "Please check the power supply unit for errors",
+                                        "dependencies": [
+                                            {
+                                                "name": "{#PSU_DESCR}: Power supply is in critical state",
+                                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/sensor.psu.status[powerSupplyStatus.{#SNMPINDEX}],#1,\"eq\",\"{$PSU_CRIT_STATUS:\\\"critical\\\"}\")=1 or count(/Template Customizado - Server Dell iDRAC SNMP/sensor.psu.status[powerSupplyStatus.{#SNMPINDEX}],#1,\"eq\",\"{$PSU_CRIT_STATUS:\\\"nonRecoverable\\\"}\")=1"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "2ac93ac9384146dea4cff02de9460985",
+                        "name": "Temperature Ambient Discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},1.3.6.1.4.1.674.10892.5.4.700.20.1.1,{#SENSOR_LOCALE},1.3.6.1.4.1.674.10892.5.4.700.20.1.8]",
+                        "key": "temp.ambient.discovery",
+                        "delay": "1h",
+                        "filter": {
+                            "conditions": [
+                                {
+                                    "macro": "{#SENSOR_LOCALE}",
+                                    "value": ".*Inlet Temp.*",
+                                    "formulaid": "A"
+                                }
+                            ]
+                        },
+                        "description": "Scanning table of Temperature Probe Table IDRAC-MIB-SMIv2::temperatureProbeTable",
+                        "item_prototypes": [
+                            {
+                                "uuid": "15450febf8144cdfa1419c6d32aa6dea",
+                                "name": "{#SENSOR_LOCALE}: Temperature status",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.4.700.20.1.5.{#SNMPINDEX}",
+                                "key": "sensor.temp.status[temperatureProbeStatus.Ambient.{#SNMPINDEX}]",
+                                "delay": "3m",
+                                "history": "2w",
+                                "trends": "0d",
+                                "description": "MIB: IDRAC-MIB-SMIv2\n0700.0020.0001.0005 This attribute defines the probe status of the temperature probe.",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::StatusProbeEnum"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Temperature"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "fdc210d0faff4d45a6dccbe60f83ad68",
+                                "name": "{#SENSOR_LOCALE}: Temperature",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.4.700.20.1.6.{#SNMPINDEX}",
+                                "key": "sensor.temp.value[temperatureProbeReading.Ambient.{#SNMPINDEX}]",
+                                "delay": "3m",
+                                "value_type": "FLOAT",
+                                "units": "\u00b0C",
+                                "description": "MIB: IDRAC-MIB-SMIv2\n0700.0020.0001.0006 This attribute defines the reading for a temperature probe of type other than temperatureProbeTypeIsDiscrete.  When the value for temperatureProbeType is other than temperatureProbeTypeIsDiscrete,the value returned for this attribute is the temperature that the probeis reading in tenths of degrees Centigrade. When the value for temperatureProbeType is temperatureProbeTypeIsDiscrete, a value is not returned for this attribute.",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::StatusProbeEnum"
+                                },
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "0.1"
+                                        ]
+                                    }
+                                ],
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Temperature"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "d1cab19ade4f4556b1183453e781f0de",
+                                        "expression": "avg(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.Ambient.{#SNMPINDEX}],5m)<{$TEMP_CRIT_LOW:\"Ambient\"}",
+                                        "recovery_mode": "RECOVERY_EXPRESSION",
+                                        "recovery_expression": "min(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.Ambient.{#SNMPINDEX}],5m)>{$TEMP_CRIT_LOW:\"Ambient\"}+3",
+                                        "name": "{#SENSOR_LOCALE}: Temperature is too low: <{$TEMP_CRIT_LOW:\"Ambient\"}",
+                                        "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                        "priority": "AVERAGE"
+                                    }
+                                ]
+                            }
+                        ],
+                        "trigger_prototypes": [
+                            {
+                                "uuid": "10dc32f33b034e59b3dbe70e193047ea",
+                                "expression": "avg(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.Ambient.{#SNMPINDEX}],5m)>{$TEMP_CRIT:\"Ambient\"}\nor\nlast(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.status[temperatureProbeStatus.Ambient.{#SNMPINDEX}])={$TEMP_CRIT_STATUS}\nor\nlast(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.status[temperatureProbeStatus.Ambient.{#SNMPINDEX}])={$TEMP_DISASTER_STATUS}",
+                                "recovery_mode": "RECOVERY_EXPRESSION",
+                                "recovery_expression": "max(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.Ambient.{#SNMPINDEX}],5m)<{$TEMP_CRIT:\"Ambient\"}-3",
+                                "name": "{#SENSOR_LOCALE}: Temperature is above critical threshold: >{$TEMP_CRIT:\"Ambient\"}",
+                                "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                "priority": "HIGH",
+                                "description": "This trigger uses temperature sensor values as well as temperature sensor status if available"
+                            },
+                            {
+                                "uuid": "ce001cae9205475fba00a38c119531e3",
+                                "expression": "avg(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.Ambient.{#SNMPINDEX}],5m)>{$TEMP_WARN:\"Ambient\"}\nor\nlast(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.status[temperatureProbeStatus.Ambient.{#SNMPINDEX}])={$TEMP_WARN_STATUS}",
+                                "recovery_mode": "RECOVERY_EXPRESSION",
+                                "recovery_expression": "max(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.Ambient.{#SNMPINDEX}],5m)<{$TEMP_WARN:\"Ambient\"}-3",
+                                "name": "{#SENSOR_LOCALE}: Temperature is above warning threshold: >{$TEMP_WARN:\"Ambient\"}",
+                                "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                "priority": "WARNING",
+                                "description": "This trigger uses temperature sensor values as well as temperature sensor status if available",
+                                "dependencies": [
+                                    {
+                                        "name": "{#SENSOR_LOCALE}: Temperature is above critical threshold: >{$TEMP_CRIT:\"Ambient\"}",
+                                        "expression": "avg(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.Ambient.{#SNMPINDEX}],5m)>{$TEMP_CRIT:\"Ambient\"}\nor\nlast(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.status[temperatureProbeStatus.Ambient.{#SNMPINDEX}])={$TEMP_CRIT_STATUS}\nor\nlast(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.status[temperatureProbeStatus.Ambient.{#SNMPINDEX}])={$TEMP_DISASTER_STATUS}",
+                                        "recovery_expression": "max(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.Ambient.{#SNMPINDEX}],5m)<{$TEMP_CRIT:\"Ambient\"}-3"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "23458baa1f474ae1afd09a1906a0afc2",
+                        "name": "Temperature CPU Discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},1.3.6.1.4.1.674.10892.5.4.700.20.1.1,{#SENSOR_LOCALE},1.3.6.1.4.1.674.10892.5.4.700.20.1.8]",
+                        "key": "temp.cpu.discovery",
+                        "delay": "1h",
+                        "filter": {
+                            "conditions": [
+                                {
+                                    "macro": "{#SENSOR_LOCALE}",
+                                    "value": ".*CPU.*",
+                                    "formulaid": "A"
+                                }
+                            ]
+                        },
+                        "description": "Scanning table of Temperature Probe Table IDRAC-MIB-SMIv2::temperatureProbeTable",
+                        "item_prototypes": [
+                            {
+                                "uuid": "f2a8f04d974d41fc8da5783f5d601973",
+                                "name": "{#SENSOR_LOCALE}: Temperature status",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.4.700.20.1.5.{#SNMPINDEX}",
+                                "key": "sensor.temp.status[temperatureProbeStatus.CPU.{#SNMPINDEX}]",
+                                "delay": "3m",
+                                "history": "2w",
+                                "trends": "0d",
+                                "description": "MIB: IDRAC-MIB-SMIv2\n0700.0020.0001.0005 This attribute defines the probe status of the temperature probe.",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::StatusProbeEnum"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Temperature"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "179338e64be64e1dae533d9c2f033b11",
+                                "name": "{#SENSOR_LOCALE}: Temperature",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.4.700.20.1.6.{#SNMPINDEX}",
+                                "key": "sensor.temp.value[temperatureProbeReading.CPU.{#SNMPINDEX}]",
+                                "delay": "3m",
+                                "value_type": "FLOAT",
+                                "units": "\u00b0C",
+                                "description": "MIB: IDRAC-MIB-SMIv2\n0700.0020.0001.0006 This attribute defines the reading for a temperature probe of type other than temperatureProbeTypeIsDiscrete.  When the value for temperatureProbeType is other than temperatureProbeTypeIsDiscrete,the value returned for this attribute is the temperature that the probeis reading in tenths of degrees Centigrade. When the value for temperatureProbeType is temperatureProbeTypeIsDiscrete, a value is not returned for this attribute.",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::StatusProbeEnum"
+                                },
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "0.1"
+                                        ]
+                                    }
+                                ],
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Temperature"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "1d71c24feacd458fb15d9ca16c17f06a",
+                                        "expression": "avg(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.CPU.{#SNMPINDEX}],5m)<{$TEMP_CRIT_LOW:\"CPU\"}",
+                                        "recovery_mode": "RECOVERY_EXPRESSION",
+                                        "recovery_expression": "min(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.CPU.{#SNMPINDEX}],5m)>{$TEMP_CRIT_LOW:\"CPU\"}+3",
+                                        "name": "{#SENSOR_LOCALE}: Temperature is too low: <{$TEMP_CRIT_LOW:\"CPU\"}",
+                                        "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                        "priority": "AVERAGE"
+                                    }
+                                ]
+                            }
+                        ],
+                        "trigger_prototypes": [
+                            {
+                                "uuid": "d666614ca0fc410d943daaf682e89bdf",
+                                "expression": "avg(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.CPU.{#SNMPINDEX}],5m)>{$TEMP_CRIT:\"CPU\"}\nor\nlast(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.status[temperatureProbeStatus.CPU.{#SNMPINDEX}])={$TEMP_CRIT_STATUS}\nor\nlast(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.status[temperatureProbeStatus.CPU.{#SNMPINDEX}])={$TEMP_DISASTER_STATUS}",
+                                "recovery_mode": "RECOVERY_EXPRESSION",
+                                "recovery_expression": "max(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.CPU.{#SNMPINDEX}],5m)<{$TEMP_CRIT:\"CPU\"}-3",
+                                "name": "{#SENSOR_LOCALE}: Temperature is above critical threshold: >{$TEMP_CRIT:\"CPU\"}",
+                                "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                "priority": "HIGH",
+                                "description": "This trigger uses temperature sensor values as well as temperature sensor status if available"
+                            },
+                            {
+                                "uuid": "7ebfbe126ddc4bb38a348d2012194a23",
+                                "expression": "avg(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.CPU.{#SNMPINDEX}],5m)>{$TEMP_WARN:\"CPU\"}\nor\nlast(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.status[temperatureProbeStatus.CPU.{#SNMPINDEX}])={$TEMP_WARN_STATUS}",
+                                "recovery_mode": "RECOVERY_EXPRESSION",
+                                "recovery_expression": "max(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.CPU.{#SNMPINDEX}],5m)<{$TEMP_WARN:\"CPU\"}-3",
+                                "name": "{#SENSOR_LOCALE}: Temperature is above warning threshold: >{$TEMP_WARN:\"CPU\"}",
+                                "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                "priority": "WARNING",
+                                "description": "This trigger uses temperature sensor values as well as temperature sensor status if available",
+                                "dependencies": [
+                                    {
+                                        "name": "{#SENSOR_LOCALE}: Temperature is above critical threshold: >{$TEMP_CRIT:\"CPU\"}",
+                                        "expression": "avg(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.CPU.{#SNMPINDEX}],5m)>{$TEMP_CRIT:\"CPU\"}\nor\nlast(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.status[temperatureProbeStatus.CPU.{#SNMPINDEX}])={$TEMP_CRIT_STATUS}\nor\nlast(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.status[temperatureProbeStatus.CPU.{#SNMPINDEX}])={$TEMP_DISASTER_STATUS}",
+                                        "recovery_expression": "max(/Template Customizado - Server Dell iDRAC SNMP/sensor.temp.value[temperatureProbeReading.CPU.{#SNMPINDEX}],5m)<{$TEMP_CRIT:\"CPU\"}-3"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "1d23004851914ebd826d93718dcbb160",
+                        "name": "Virtual Disk Discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},1.3.6.1.4.1.674.10892.5.5.1.20.140.1.1.1,{#DISK_NAME},1.3.6.1.4.1.674.10892.5.5.1.20.140.1.1.2]",
+                        "key": "virtualdisk.discovery",
+                        "delay": "1h",
+                        "description": "IDRAC-MIB-SMIv2::virtualDiskTable",
+                        "item_prototypes": [
+                            {
+                                "uuid": "ead59df9d6014c998d9226ab67425150",
+                                "name": "Disk {#SNMPVALUE}({#DISK_NAME}): Layout type",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.140.1.1.13.{#SNMPINDEX}",
+                                "key": "system.hw.virtualdisk.layout[virtualDiskLayout.{#SNMPINDEX}]",
+                                "delay": "1h",
+                                "history": "2w",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe virtual disk's RAID type.\nPossible values:\n1: Not one of the following\n2: RAID-0\n3: RAID-1\n4: RAID-5\n5: RAID-6\n6: RAID-10\n7: RAID-50\n8: RAID-60\n9: Concatenated RAID 1\n10: Concatenated RAID 5",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::virtualDiskLayout"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Virtual disks"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "9d43618e52fc4874a68691605c67d7f3",
+                                "name": "Disk {#SNMPVALUE}({#DISK_NAME}): Read policy",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.140.1.1.11.{#SNMPINDEX}",
+                                "key": "system.hw.virtualdisk.readpolicy[virtualDiskReadPolicy.{#SNMPINDEX}]",
+                                "delay": "1h",
+                                "history": "2w",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe read policy used by the controller for read operations on this virtual disk.\nPossible values:\n1: No Read Ahead.\n2: Read Ahead.\n3: Adaptive Read Ahead.",
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Virtual disks"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "7c1b489d3ec64fc1b92f7175d8b6e58e",
+                                "name": "Disk {#SNMPVALUE}({#DISK_NAME}): Disk size",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.140.1.1.6.{#SNMPINDEX}",
+                                "key": "system.hw.virtualdisk.size[virtualDiskSizeInMB.{#SNMPINDEX}]",
+                                "delay": "1h",
+                                "history": "2w",
+                                "trends": "0d",
+                                "units": "B",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe size of the virtual disk in megabytes.",
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "1048576"
+                                        ]
+                                    }
+                                ],
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Virtual disks"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "e59b628a53e94728be8929d6612a6b6d",
+                                "name": "Disk {#SNMPVALUE}({#DISK_NAME}): Current state",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.140.1.1.30.{#SNMPINDEX}",
+                                "key": "system.hw.virtualdisk.state[virtualDiskOperationalState.{#SNMPINDEX}]",
+                                "delay": "3m",
+                                "history": "2w",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe state of the virtual disk when there are progressive operations ongoing.\nPossible values:\n1: There is no active operation running.\n2: The virtual disk configuration has changed. The physical disks included in the virtual disk are being modified to support the new configuration.\n3: A Consistency Check (CC) is being performed on the virtual disk.\n4: The virtual disk is being initialized.\n5: BackGround Initialization (BGI) is being performed on the virtual disk.",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::virtualDiskOperationalState"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Virtual disks"
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "5b97ee15af584cbfb28bf2df503edd6c",
+                                "name": "Disk {#SNMPVALUE}({#DISK_NAME}): Status",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.140.1.1.4.{#SNMPINDEX}",
+                                "key": "system.hw.virtualdisk.status[virtualDiskState.{#SNMPINDEX}]",
+                                "delay": "3m",
+                                "history": "2w",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe current state of this virtual disk (which includes any member physical disks.)\nPossible states:\n1: The current state could not be determined.\n2: The virtual disk is operating normally or optimally.\n3: The virtual disk has encountered a failure. The data on disk is lost or is about to be lost.\n4: The virtual disk encounterd a failure with one or all of the constituent redundant physical disks.\nThe data on the virtual disk might no longer be fault tolerant.",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::virtualDiskState"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Virtual disks"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "2dee2f15b9a84913917b012fb5734074",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.virtualdisk.status[virtualDiskState.{#SNMPINDEX}],#1,\"eq\",\"{$VDISK_CRIT_STATUS:\\\"failed\\\"}\")=1",
+                                        "name": "Disk {#SNMPVALUE}({#DISK_NAME}): Virtual disk failed",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "HIGH",
+                                        "description": "Please check virtual disk for warnings or errors"
+                                    },
+                                    {
+                                        "uuid": "70b50220fd4a430e8c48e788a2e2559f",
+                                        "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.virtualdisk.status[virtualDiskState.{#SNMPINDEX}],#1,\"eq\",\"{$VDISK_WARN_STATUS:\\\"degraded\\\"}\")=1",
+                                        "name": "Disk {#SNMPVALUE}({#DISK_NAME}): Virtual disk is in warning state",
+                                        "opdata": "Current state: {ITEM.LASTVALUE1}",
+                                        "priority": "AVERAGE",
+                                        "description": "Please check virtual disk for warnings or errors",
+                                        "dependencies": [
+                                            {
+                                                "name": "Disk {#SNMPVALUE}({#DISK_NAME}): Virtual disk failed",
+                                                "expression": "count(/Template Customizado - Server Dell iDRAC SNMP/system.hw.virtualdisk.status[virtualDiskState.{#SNMPINDEX}],#1,\"eq\",\"{$VDISK_CRIT_STATUS:\\\"failed\\\"}\")=1"
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "uuid": "4ddd2d42105f4e5dbf38a1968005b8e9",
+                                "name": "Disk {#SNMPVALUE}({#DISK_NAME}): Write policy",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.674.10892.5.5.1.20.140.1.1.10.{#SNMPINDEX}",
+                                "key": "system.hw.virtualdisk.writepolicy[virtualDiskWritePolicy.{#SNMPINDEX}]",
+                                "delay": "1h",
+                                "history": "2w",
+                                "description": "MIB: IDRAC-MIB-SMIv2\nThe write policy used by the controller for write operations on this virtual disk.\nPossible values:\n1: Write Through.\n2: Write Back.\n3: Force Write Back.",
+                                "valuemap": {
+                                    "name": "IDRAC-MIB-SMIv2::virtualDiskWritePolicy"
+                                },
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Virtual disks"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "macros": [
+                    {
+                        "macro": "{$DISK_ARRAY_CACHE_BATTERY_CRIT_STATUS}",
+                        "value": "3"
+                    },
+                    {
+                        "macro": "{$DISK_ARRAY_CACHE_BATTERY_OK_STATUS}",
+                        "value": "2"
+                    },
+                    {
+                        "macro": "{$DISK_ARRAY_CACHE_BATTERY_WARN_STATUS}",
+                        "value": "4"
+                    },
+                    {
+                        "macro": "{$DISK_ARRAY_CRIT_STATUS:\"critical\"}",
+                        "value": "5"
+                    },
+                    {
+                        "macro": "{$DISK_ARRAY_FAIL_STATUS:\"nonRecoverable\"}",
+                        "value": "6"
+                    },
+                    {
+                        "macro": "{$DISK_ARRAY_WARN_STATUS:\"nonCritical\"}",
+                        "value": "4"
+                    },
+                    {
+                        "macro": "{$DISK_FAIL_STATUS:\"critical\"}",
+                        "value": "5"
+                    },
+                    {
+                        "macro": "{$DISK_FAIL_STATUS:\"nonRecoverable\"}",
+                        "value": "6"
+                    },
+                    {
+                        "macro": "{$DISK_SMART_FAIL_STATUS}",
+                        "value": "1"
+                    },
+                    {
+                        "macro": "{$DISK_WARN_STATUS:\"nonCritical\"}",
+                        "value": "4"
+                    },
+                    {
+                        "macro": "{$FAN_CRIT_STATUS:\"criticalLower\"}",
+                        "value": "8"
+                    },
+                    {
+                        "macro": "{$FAN_CRIT_STATUS:\"criticalUpper\"}",
+                        "value": "5"
+                    },
+                    {
+                        "macro": "{$FAN_CRIT_STATUS:\"failed\"}",
+                        "value": "10"
+                    },
+                    {
+                        "macro": "{$FAN_CRIT_STATUS:\"nonRecoverableLower\"}",
+                        "value": "9"
+                    },
+                    {
+                        "macro": "{$FAN_CRIT_STATUS:\"nonRecoverableUpper\"}",
+                        "value": "6"
+                    },
+                    {
+                        "macro": "{$FAN_WARN_STATUS:\"nonCriticalLower\"}",
+                        "value": "7"
+                    },
+                    {
+                        "macro": "{$FAN_WARN_STATUS:\"nonCriticalUpper\"}",
+                        "value": "4"
+                    },
+                    {
+                        "macro": "{$HEALTH_CRIT_STATUS}",
+                        "value": "5"
+                    },
+                    {
+                        "macro": "{$HEALTH_DISASTER_STATUS}",
+                        "value": "6"
+                    },
+                    {
+                        "macro": "{$HEALTH_WARN_STATUS}",
+                        "value": "4"
+                    },
+                    {
+                        "macro": "{$PSU_CRIT_STATUS:\"critical\"}",
+                        "value": "5"
+                    },
+                    {
+                        "macro": "{$PSU_CRIT_STATUS:\"nonRecoverable\"}",
+                        "value": "6"
+                    },
+                    {
+                        "macro": "{$PSU_WARN_STATUS:\"nonCritical\"}",
+                        "value": "4"
+                    },
+                    {
+                        "macro": "{$TEMP_CRIT}",
+                        "value": "60"
+                    },
+                    {
+                        "macro": "{$TEMP_CRIT:\"Ambient\"}",
+                        "value": "35"
+                    },
+                    {
+                        "macro": "{$TEMP_CRIT:\"CPU\"}",
+                        "value": "75"
+                    },
+                    {
+                        "macro": "{$TEMP_CRIT_LOW}",
+                        "value": "5"
+                    },
+                    {
+                        "macro": "{$TEMP_CRIT_STATUS}",
+                        "value": "5"
+                    },
+                    {
+                        "macro": "{$TEMP_DISASTER_STATUS}",
+                        "value": "6"
+                    },
+                    {
+                        "macro": "{$TEMP_WARN}",
+                        "value": "50"
+                    },
+                    {
+                        "macro": "{$TEMP_WARN:\"Ambient\"}",
+                        "value": "30"
+                    },
+                    {
+                        "macro": "{$TEMP_WARN:\"CPU\"}",
+                        "value": "70"
+                    },
+                    {
+                        "macro": "{$TEMP_WARN_STATUS}",
+                        "value": "4"
+                    },
+                    {
+                        "macro": "{$VDISK_CRIT_STATUS:\"failed\"}",
+                        "value": "3"
+                    },
+                    {
+                        "macro": "{$VDISK_WARN_STATUS:\"degraded\"}",
+                        "value": "4"
+                    }
+                ],
+                "valuemaps": [
+                    {
+                        "uuid": "7324ac315aff47469d0e9b03d453f612",
+                        "name": "IDRAC-MIB-SMIv2::batteryState",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Unknown"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "Ready"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "Failed"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "Degraded"
+                            },
+                            {
+                                "value": "5",
+                                "newvalue": "Missing"
+                            },
+                            {
+                                "value": "6",
+                                "newvalue": "Charging"
+                            },
+                            {
+                                "value": "7",
+                                "newvalue": "Below threshold"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "043c6ed5c9b24d139331750ffeab5798",
+                        "name": "IDRAC-MIB-SMIv2::BooleanType",
+                        "mappings": [
+                            {
+                                "value": "0",
+                                "newvalue": "ok"
+                            },
+                            {
+                                "value": "1",
+                                "newvalue": "failed"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "0bca0998472348af8081f5c0756a0696",
+                        "name": "IDRAC-MIB-SMIv2::ObjectStatusEnum",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "other"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "unknown"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "ok"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "nonCritical"
+                            },
+                            {
+                                "value": "5",
+                                "newvalue": "critical"
+                            },
+                            {
+                                "value": "6",
+                                "newvalue": "nonRecoverable"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "d096d760589a481793fc7095537fd989",
+                        "name": "IDRAC-MIB-SMIv2::physicalDiskComponentStatus",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "other"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "unknown"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "ok"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "nonCritical"
+                            },
+                            {
+                                "value": "5",
+                                "newvalue": "critical"
+                            },
+                            {
+                                "value": "6",
+                                "newvalue": "nonRecoverable"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "9721c106bcc04e298546110ed4c2c46b",
+                        "name": "IDRAC-MIB-SMIv2::physicalDiskMediaType",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Unknown"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "HDD"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "SSD"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "e7c4af62a659444f951194cb4c00e05b",
+                        "name": "IDRAC-MIB-SMIv2::StatusProbeEnum",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "other"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "unknown"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "ok"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "nonCriticalUpper"
+                            },
+                            {
+                                "value": "5",
+                                "newvalue": "criticalUpper"
+                            },
+                            {
+                                "value": "6",
+                                "newvalue": "nonRecoverableUpper"
+                            },
+                            {
+                                "value": "7",
+                                "newvalue": "nonCriticalLower"
+                            },
+                            {
+                                "value": "8",
+                                "newvalue": "criticalLower"
+                            },
+                            {
+                                "value": "9",
+                                "newvalue": "nonRecoverableLower"
+                            },
+                            {
+                                "value": "10",
+                                "newvalue": "failed"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "2943451735e74370aa9fa6fc4a91e379",
+                        "name": "IDRAC-MIB-SMIv2::virtualDiskLayout",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Other"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "RAID-0"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "RAID-1"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "RAID-5"
+                            },
+                            {
+                                "value": "5",
+                                "newvalue": "RAID-6"
+                            },
+                            {
+                                "value": "6",
+                                "newvalue": "RAID-10"
+                            },
+                            {
+                                "value": "7",
+                                "newvalue": "RAID-50"
+                            },
+                            {
+                                "value": "8",
+                                "newvalue": "RAID-60"
+                            },
+                            {
+                                "value": "9",
+                                "newvalue": "Concatenated RAID 1"
+                            },
+                            {
+                                "value": "10",
+                                "newvalue": "Concatenated RAID 5"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "db2c7c2022c247b69295b36c002cf276",
+                        "name": "IDRAC-MIB-SMIv2::virtualDiskOperationalState",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Not applicable"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "Reconstructing"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "Resynching"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "Initializing"
+                            },
+                            {
+                                "value": "5",
+                                "newvalue": "Background init"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "a78abd6497774c1fa96668e6b305728b",
+                        "name": "IDRAC-MIB-SMIv2::virtualDiskState",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Unknown"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "Online"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "Failed"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "Degraded"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "30c8edab091246e4bd613fe11e7c7007",
+                        "name": "IDRAC-MIB-SMIv2::virtualDiskWritePolicy",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Write Through"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "Write Back"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "Force Write Back"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

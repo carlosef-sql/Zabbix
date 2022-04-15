@@ -1,0 +1,94 @@
+{
+    "zabbix_export": {
+        "version": "6.0",
+        "date": "2022-04-15T14:40:42Z",
+        "groups": [
+            {
+                "uuid": "7df96b18c230490a9a0a9e2307226338",
+                "name": "Templates"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "1f8aa8fa0c944fc9a2d7289080399bbe",
+                "template": "Template Customizado - DVR Intelbras 4 Canais",
+                "name": "Template Customizado - DVR Intelbras 4 Canais",
+                "groups": [
+                    {
+                        "name": "Templates"
+                    }
+                ],
+                "items": [
+                    {
+                        "uuid": "68d7f8642edc4c8aa1bb7593a7ac984b",
+                        "name": "Camera 01",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.1",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.1",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "b0b7b9a4cae746e4bdada4a49136c067",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 4 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.1,1d)=0",
+                                "name": "Camera 01 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "d6f9bcfae9924619879deb8413e2f9e7",
+                        "name": "Camera 02",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.2",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.2",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "e3c4222b8dfc43d8b591286e25e1254d",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 4 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.2,1d)=0",
+                                "name": "Camera 02 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "1951dd340a354908b99422ef488bdc9c",
+                        "name": "Camera 03",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.3",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.3",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "c7596b6a84b649bd8665b8e891ed10f4",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 4 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.3,1d)=0",
+                                "name": "Camera 03 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "4634afa3175349e5948435121a34707f",
+                        "name": "Camera 04",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.4",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.4",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "4bbdd92e7e214469b3aa2214152ae090",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 4 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.4,1d)=0",
+                                "name": "Camera 04 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

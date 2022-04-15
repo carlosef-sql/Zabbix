@@ -1,0 +1,298 @@
+{
+    "zabbix_export": {
+        "version": "6.0",
+        "date": "2022-04-15T14:39:50Z",
+        "groups": [
+            {
+                "uuid": "7df96b18c230490a9a0a9e2307226338",
+                "name": "Templates"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "13b69768d3ec4133b40dfd45d1c54473",
+                "template": "Template Customizado - DVR Intelbras 16 Canais",
+                "name": "Template Customizado - DVR Intelbras 16 Canais",
+                "groups": [
+                    {
+                        "name": "Templates"
+                    }
+                ],
+                "items": [
+                    {
+                        "uuid": "d28457e0ae3c4a89abcc2ae73c8aab8e",
+                        "name": "Camera 01",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.1",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.1",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "d8c125111a234492b2c999bf1c2d6f01",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.1,1d)=0",
+                                "name": "Camera 01 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "ca888b01d5104e678f89736702a40bd3",
+                        "name": "Camera 02",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.2",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.2",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "5176af777fcd4fde90767ee7a5b384f2",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.2,1d)=0",
+                                "name": "Camera 02 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "1c217d3a53da41e0a685ba8381cbe502",
+                        "name": "Camera 03",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.3",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.3",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "d658d1b49aca4886b18d5d00ecafcfed",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.3,1d)=0",
+                                "name": "Camera 03 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "780350642fe14ea592702d21f09e9fda",
+                        "name": "Camera 04",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.4",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.4",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "010c4cbedc6a412caf3f965834bd78de",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.4,1d)=0",
+                                "name": "Camera 04 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "e660dab2c6eb4d089f82a9b0344642fa",
+                        "name": "Camera 05",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.5",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.5",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "9bb81a0448fa406894b20c7ecb56297b",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.5,1d)=0",
+                                "name": "Camera 05 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "456d4a07f7d0410c9be2233199caa913",
+                        "name": "Camera 06",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.6",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.6",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "9e100df5dbbe4f17add26e7f5ed90df6",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.6,1d)=0",
+                                "name": "Camera 06 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "c2338843651342ebbac0c5b64beed05b",
+                        "name": "Camera 07",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.7",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.7",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "9187383e09084c7fb6f05c77c64d078a",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.7,1d)=0",
+                                "name": "Camera 07 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "7bcf4079966c4ab08f74bda06224e57f",
+                        "name": "Camera 08",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.8",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.8",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "7f7c407d478443deb9174ba9d5c16e37",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.8,1d)=0",
+                                "name": "Camera 08 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "63f45e364d22473c85aea76d3ca8e870",
+                        "name": "Camera 09",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.9",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.9",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "0c2aa291449346d1a5a2c73c5519d2e0",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.9,1d)=0",
+                                "name": "Camera 09 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "8ac6ad145ee54d54b0664161c183e9bb",
+                        "name": "Camera 10",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.10",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.10",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "98244108284444d4bffe42e205543787",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.10,1d)=0",
+                                "name": "Camera 10 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "49626cbacc6645cb83810a6be6c00bbf",
+                        "name": "Camera 11",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.11",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.11",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "4460eeaf364f47afadbef2a57da3ca44",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.11,1d)=0",
+                                "name": "Camera 11 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "1ac176f4518841e8aa2ff5ea34b377ee",
+                        "name": "Camera 12",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.12",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.12",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "3b547bb785ef4bedae5450e624165afc",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.12,1d)=0",
+                                "name": "Camera 12 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "76405a62864e43149362bcc6178e50ee",
+                        "name": "Camera 13",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.13",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.13",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "10ea66d54c28479ab19cda993ee5f251",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.13,1d)=0",
+                                "name": "Camera 13 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "58e33071a7be4b708e7aa44841ac5824",
+                        "name": "Camera 14",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.14",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.14",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "cc006859a545466297bb0ce438064943",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.14,1d)=0",
+                                "name": "Camera 14 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "36dabad996fc424cbebcd829cb653423",
+                        "name": "Camera 15",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.15",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.15",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "f144c9c7bd964044afb39ce98666180e",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.15,1d)=0",
+                                "name": "Camera 15 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "83a171a129064046a4b9ddea3bae8cb7",
+                        "name": "Camera 16",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.16",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.16",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "42e858e07bbe47d4b5ee74f10e21cb35",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 16 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.16,1d)=0",
+                                "name": "Camera 16 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

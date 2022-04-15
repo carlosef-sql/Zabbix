@@ -1,0 +1,570 @@
+{
+    "zabbix_export": {
+        "version": "6.0",
+        "date": "2022-04-15T14:36:38Z",
+        "groups": [
+            {
+                "uuid": "57b7ae836ca64446ba2c296389c009b7",
+                "name": "Templates/Modules"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "d0969dd6060e4133b1e2bb889d246f61",
+                "template": "Template Customizado - Nobreak APC 3000",
+                "name": "Template Customizado - Nobreak APC 3000",
+                "groups": [
+                    {
+                        "name": "Templates/Modules"
+                    }
+                ],
+                "items": [
+                    {
+                        "uuid": "bbebf61c32df4c108f62f9f82df06266",
+                        "name": "Carga Energ\u00e9tica em %",
+                        "type": "CALCULATED",
+                        "key": "Calculado.Carga.Energetica",
+                        "delay": "30s",
+                        "history": "60d",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "params": "last(//upsAdvOutputVoltage.0)*last(//upsAdvOutputCurrent.0)/3000*100",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Geral"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "0f467b55e27046d982e0a71d0c4119ae",
+                                "expression": "last(/Template Customizado - Nobreak APC 3000/Calculado.Carga.Energetica)>=90",
+                                "name": "Carga do Nobreak em 90%",
+                                "priority": "HIGH"
+                            },
+                            {
+                                "uuid": "54ff69ba5bf34f56b04f22fee8621993",
+                                "expression": "last(/Template Customizado - Nobreak APC 3000/Calculado.Carga.Energetica)=100",
+                                "name": "Carga do Nobreak em 100%",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "136a58b5bb974ba0b3b4acc5f475a8cb",
+                        "name": "Tempo Ligado",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "sysUpTime.0",
+                        "key": "sysUpTime.0",
+                        "delay": "30s",
+                        "history": "30d",
+                        "units": "uptime",
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "0.01"
+                                ]
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Geral"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "88894731601e47999b8f21c9f4a4ccd8",
+                        "name": "Voltagem da Bateria",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvBatteryActualVoltage.0",
+                        "key": "upsAdvBatteryActualVoltage.0",
+                        "units": "V",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Bateria"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "297dd11bbc2b463ba94bab6c22724da5",
+                        "name": "Carga da Bateria",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvBatteryCapacity.0",
+                        "key": "upsAdvBatteryCapacity.0",
+                        "delay": "2m",
+                        "units": "%",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Bateria"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "921102c222ea44f9ac3c3cf7ea72df8c",
+                                "expression": "last(/Template Customizado - Nobreak APC 3000/upsAdvBatteryCapacity.0)<50",
+                                "name": "Carga da Bateria com 50%",
+                                "priority": "HIGH"
+                            },
+                            {
+                                "uuid": "2c68ae9dcf1f494dbc2b2e26f9590eb7",
+                                "expression": "last(/Template Customizado - Nobreak APC 3000/upsAdvBatteryCapacity.0)<75",
+                                "name": "Carga da Bateria com 75%",
+                                "priority": "WARNING"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "c5a232d9b97f4debae698f017090504f",
+                        "name": "Indicador de Status da Bateria",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvBatteryReplaceIndicator.0",
+                        "key": "upsAdvBatteryReplaceIndicator.0",
+                        "delay": "1d",
+                        "valuemap": {
+                            "name": "UPS Status de Substitui\u00e7\u00e3o da Bateria"
+                        },
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Bateria"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "f68eb7d58ff54970b8da3483c37449cc",
+                                "expression": "last(/Template Customizado - Nobreak APC 3000/upsAdvBatteryReplaceIndicator.0)<>1",
+                                "name": "Verificar Indicador de Status da Bateria",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "a7e928aa274545da864689f5b8889223",
+                        "name": "Dura\u00e7\u00e3o da Carga da Bateria",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvBatteryRunTimeRemaining.0",
+                        "key": "upsAdvBatteryRunTimeRemaining.0",
+                        "delay": "3m",
+                        "units": "s",
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "0.01"
+                                ]
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Bateria"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "8b3875e7f6ca43d5a9fd2f644d60ef91",
+                        "name": "Temperatura da Bateria",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvBatteryTemperature.0",
+                        "key": "upsAdvBatteryTemperature.0",
+                        "units": "\u00baC",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Bateria"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "044a039e02e64b4aab215f5015e1d7d4",
+                                "expression": "last(/Template Customizado - Nobreak APC 3000/upsAdvBatteryTemperature.0)>=45",
+                                "name": "Temperatura da Bateria em 45 \u00baC",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "a5b0226146994330897d8abb5179da42",
+                        "name": "Vers\u00e3o da Firmware",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvIdentFirmwareRevision.0",
+                        "key": "upsAdvIdentFirmwareRevision.0",
+                        "delay": "1d",
+                        "trends": "0",
+                        "value_type": "TEXT",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Informa\u00e7\u00e3o"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "2c33cfe48b5a415eb935e9adf6ab966e",
+                        "name": "N\u00famero de Serial",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvIdentSerialNumber.0",
+                        "key": "upsAdvIdentSerialNumber.0",
+                        "delay": "1d",
+                        "trends": "0",
+                        "value_type": "TEXT",
+                        "preprocessing": [
+                            {
+                                "type": "RTRIM",
+                                "parameters": [
+                                    " "
+                                ]
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Informa\u00e7\u00e3o"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "5b040a7e30934b818b153ee9f1afe60c",
+                        "name": "Frequ\u00eancia de Entrada",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvInputFrequency.0",
+                        "key": "upsAdvInputFrequency.0",
+                        "delay": "3m",
+                        "units": "Hz",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Geral"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "70b8bea862b443ea9da91ee91fdd35af",
+                        "name": "Tens\u00e3o de Entrada",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvInputLineVoltage.0",
+                        "key": "upsAdvInputLineVoltage.0",
+                        "units": "V",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Geral"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "5ab51fa2d04646a0bcda1efaaa406c0f",
+                                "expression": "last(/Template Customizado - Nobreak APC 3000/upsAdvInputLineVoltage.0)=0",
+                                "name": "Nobreak sem Energia",
+                                "priority": "DISASTER"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "2ac0c46df63441ca87734ad3f503dced",
+                        "name": "Consumo Atual em Amperes do Nobreak",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvOutputCurrent.0",
+                        "key": "upsAdvOutputCurrent.0",
+                        "delay": "30s",
+                        "units": "Amperes",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Geral"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "211bc703c7d54be99aca03ab72d9d537",
+                        "name": "Frequ\u00eancia de Sa\u00edda",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvOutputFrequency.0",
+                        "key": "upsAdvOutputFrequency.0",
+                        "delay": "3m",
+                        "units": "Hz",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Geral"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "eab35e62735344358dc09f553c34563e",
+                        "name": "Capacidade Atual do Nobreak",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvOutputLoad.0",
+                        "key": "upsAdvOutputLoad.0",
+                        "delay": "3m",
+                        "units": "%",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Geral"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "c8a30785c1114a318b83d2357bb13568",
+                                "expression": "last(/Template Customizado - Nobreak APC 3000/upsAdvOutputLoad.0)>=75",
+                                "name": "Capacidade Atual do Nobreak em 75%",
+                                "priority": "WARNING"
+                            },
+                            {
+                                "uuid": "ec358efa66a94ae58f0ee148946da1fd",
+                                "expression": "last(/Template Customizado - Nobreak APC 3000/upsAdvOutputLoad.0)=100",
+                                "name": "Capacidade Atual do Nobreak em 100%",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "3212cac6a59e42e8aae93fa89a19ffd3",
+                        "name": "Tens\u00e3o de Sa\u00edda",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsAdvOutputVoltage.0",
+                        "key": "upsAdvOutputVoltage.0",
+                        "delay": "30s",
+                        "units": "V",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Geral"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "7cfb24fd91874b47b66594e530951d9b",
+                        "name": "Status da Bateria",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsBasicBatteryStatus.0",
+                        "key": "upsBasicBatteryStatus.0",
+                        "delay": "1d",
+                        "valuemap": {
+                            "name": "UPS Status Bateria"
+                        },
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Bateria"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "da84636cec3f4d7891a4badfc61276d5",
+                                "expression": "last(/Template Customizado - Nobreak APC 3000/upsBasicBatteryStatus.0)<>2",
+                                "name": "Verificar Status da Bateria",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "ed28cd5934c94045b5a1f9bac6df5204",
+                        "name": "Modelo",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsBasicIdentModel.0",
+                        "key": "upsBasicIdentModel.0",
+                        "delay": "1d",
+                        "trends": "0",
+                        "value_type": "TEXT",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Informa\u00e7\u00e3o"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "f37e4b832b4f4fdab9a4a899029ff3e0",
+                        "name": "Nome",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsBasicIdentName.0",
+                        "key": "upsBasicIdentName.0",
+                        "delay": "1d",
+                        "trends": "0",
+                        "value_type": "TEXT",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Informa\u00e7\u00e3o"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "8d1c523536a14f719d798148b09730d5",
+                        "name": "Status de Sa\u00edda da Bateria",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsBasicOutputStatus.0",
+                        "key": "upsBasicOutputStatus.0",
+                        "delay": "3m",
+                        "valuemap": {
+                            "name": "UPS upsBasicOutputStatus"
+                        },
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Geral"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "1579e774c502422689f343996dc63502",
+                                "expression": "last(/Template Customizado - Nobreak APC 3000/upsBasicOutputStatus.0)=3",
+                                "name": "Alimenta\u00e7\u00e3o pelo M\u00f3dulo de Bateria",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "6ce23903a997409aa9aae130ff2e0e0b",
+                        "name": "Status da Comunica\u00e7\u00e3o com o Nobreak",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "PowerNet-MIB::upsCommStatus.0",
+                        "key": "upsCommStatus.0",
+                        "delay": "2m",
+                        "valuemap": {
+                            "name": "UPS  upsCommStatus"
+                        },
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Geral"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "87390ecf330b465cb90409dc580542b7",
+                                "expression": "last(/Template Customizado - Nobreak APC 3000/upsCommStatus.0)<>1",
+                                "name": "Sem Comunica\u00e7\u00e3o com o Nobreak",
+                                "priority": "HIGH"
+                            }
+                        ]
+                    }
+                ],
+                "valuemaps": [
+                    {
+                        "uuid": "c9a8278243504af3976c68b07929262a",
+                        "name": "UPS Status Bateria",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Desconhecido"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "Bateria Normal"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "Bateria Fraca"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "Bateria com Falha"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "2bd41449ece14afda8d8b5dc1aed3c3b",
+                        "name": "UPS Status de Substitui\u00e7\u00e3o da Bateria",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Bateria OK"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "Substituir Bateria"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "6f74128289e64aea8e63b3c61bb27731",
+                        "name": "UPS upsBasicOutputStatus",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Desconhecido"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "onLine"
+                            },
+                            {
+                                "value": "3",
+                                "newvalue": "Pela Bateria"
+                            },
+                            {
+                                "value": "4",
+                                "newvalue": "onSmartBoost"
+                            },
+                            {
+                                "value": "5",
+                                "newvalue": "timedSleeping"
+                            },
+                            {
+                                "value": "6",
+                                "newvalue": "softwareBypass"
+                            },
+                            {
+                                "value": "7",
+                                "newvalue": "off"
+                            },
+                            {
+                                "value": "8",
+                                "newvalue": "Reiniciando"
+                            },
+                            {
+                                "value": "9",
+                                "newvalue": "switchedBypass"
+                            },
+                            {
+                                "value": "10",
+                                "newvalue": "hardwareFailureBypass"
+                            },
+                            {
+                                "value": "11",
+                                "newvalue": "sleepingUntilPowerReturn"
+                            },
+                            {
+                                "value": "12",
+                                "newvalue": "onSmartTrim"
+                            },
+                            {
+                                "value": "13",
+                                "newvalue": "ecoMode"
+                            },
+                            {
+                                "value": "14",
+                                "newvalue": "hotStandby"
+                            },
+                            {
+                                "value": "15",
+                                "newvalue": "onBatteryTest"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "84fd067ade0941bba7281596a2892b72",
+                        "name": "UPS  upsCommStatus",
+                        "mappings": [
+                            {
+                                "value": "1",
+                                "newvalue": "Ok"
+                            },
+                            {
+                                "value": "2",
+                                "newvalue": "Sem Comunica\u00e7\u00e3o"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

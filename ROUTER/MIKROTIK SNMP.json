@@ -1,0 +1,538 @@
+{
+    "zabbix_export": {
+        "version": "6.0",
+        "date": "2022-04-15T14:37:39Z",
+        "groups": [
+            {
+                "uuid": "36bff6c29af64692839d077febfc7079",
+                "name": "Templates/Network devices"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "6dfceebf9c124993b878f6d898e01232",
+                "template": "Template Customizado - Net Mikrotik SNMP",
+                "name": "Template Customizado - Net Mikrotik SNMP",
+                "description": "Template Net Mikrotik\n\nMIBs used:\nHOST-RESOURCES-MIB\nMIKROTIK-MIB\n\nKnown Issues:\n\n  Description: Doesn't have ifHighSpeed filled. fixed in more recent versions\n  Version: RouterOS 6.28 or lower\n\n  Description: Doesn't have any temperature sensors\n  Version: RouterOS 6.38.5\n  Device: Mikrotik 941-2nD, Mikrotik 951G-2HnD\n\nTemplate tooling version used: 0.38",
+                "templates": [
+                    {
+                        "name": "Template Module Generic SNMP"
+                    },
+                    {
+                        "name": "Template Module Interfaces SNMP"
+                    }
+                ],
+                "groups": [
+                    {
+                        "name": "Templates/Network devices"
+                    }
+                ],
+                "items": [
+                    {
+                        "uuid": "e0024b7110ee4608a0ffc779efd15ded",
+                        "name": "Firmware version",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.14988.1.1.7.4.0",
+                        "key": "system.hw.firmware",
+                        "delay": "1h",
+                        "history": "2w",
+                        "trends": "0",
+                        "value_type": "CHAR",
+                        "description": "MIB: MIKROTIK-MIB\nCurrent firmware version.",
+                        "preprocessing": [
+                            {
+                                "type": "DISCARD_UNCHANGED_HEARTBEAT",
+                                "parameters": [
+                                    "1d"
+                                ]
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Inventory"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "d15cb85b27634654acad2089b7114fd1",
+                                "expression": "(last(/Template Customizado - Net Mikrotik SNMP/system.hw.firmware,#1)<>last(/Template Customizado - Net Mikrotik SNMP/system.hw.firmware,#2))=1 and length(last(/Template Customizado - Net Mikrotik SNMP/system.hw.firmware))>0",
+                                "name": "Firmware has changed",
+                                "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                "priority": "INFO",
+                                "description": "Firmware version has changed. Ack to close",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "6857605394594773a4dfbf619e12add0",
+                        "name": "Hardware model name",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.2.1.1.1.0",
+                        "key": "system.hw.model",
+                        "delay": "1h",
+                        "history": "2w",
+                        "trends": "0",
+                        "value_type": "CHAR",
+                        "inventory_link": "MODEL",
+                        "preprocessing": [
+                            {
+                                "type": "DISCARD_UNCHANGED_HEARTBEAT",
+                                "parameters": [
+                                    "1d"
+                                ]
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Inventory"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "d1f13099d434456b90bf7db55d455a91",
+                        "name": "Hardware serial number",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.14988.1.1.7.3.0",
+                        "key": "system.hw.serialnumber",
+                        "delay": "1h",
+                        "history": "2w",
+                        "trends": "0",
+                        "value_type": "CHAR",
+                        "description": "MIB: MIKROTIK-MIB\nRouterBOARD serial number.",
+                        "inventory_link": "SERIALNO_A",
+                        "preprocessing": [
+                            {
+                                "type": "DISCARD_UNCHANGED_HEARTBEAT",
+                                "parameters": [
+                                    "1d"
+                                ]
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Inventory"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "a6a61946112d4609899f1883906ac827",
+                                "expression": "(last(/Template Customizado - Net Mikrotik SNMP/system.hw.serialnumber,#1)<>last(/Template Customizado - Net Mikrotik SNMP/system.hw.serialnumber,#2))=1 and length(last(/Template Customizado - Net Mikrotik SNMP/system.hw.serialnumber))>0",
+                                "name": "Device has been replaced (new serial number received)",
+                                "priority": "INFO",
+                                "description": "Device serial number has changed. Ack to close",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "726abdfd1f204c6bbf9b3f6dc3db39ba",
+                        "name": "Operating system",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.4.1.14988.1.1.4.4.0",
+                        "key": "system.sw.os[mtxrLicVersion.0]",
+                        "delay": "1h",
+                        "history": "2w",
+                        "trends": "0",
+                        "value_type": "CHAR",
+                        "description": "MIB: MIKROTIK-MIB\nSoftware version.",
+                        "inventory_link": "OS",
+                        "preprocessing": [
+                            {
+                                "type": "DISCARD_UNCHANGED_HEARTBEAT",
+                                "parameters": [
+                                    "1d"
+                                ]
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Inventory"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "2fba9c63b85340cf8077af16d6b38f19",
+                                "expression": "(last(/Template Customizado - Net Mikrotik SNMP/system.sw.os[mtxrLicVersion.0],#1)<>last(/Template Customizado - Net Mikrotik SNMP/system.sw.os[mtxrLicVersion.0],#2))=1 and length(last(/Template Customizado - Net Mikrotik SNMP/system.sw.os[mtxrLicVersion.0]))>0",
+                                "name": "Operating system description has changed",
+                                "priority": "INFO",
+                                "description": "Operating system description has changed. Possible reasons that system has been updated or replaced. Ack to close.",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "c36eba056a40416c9232061a2e59368b",
+                        "name": "Total memory",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.2.1.25.2.3.1.5.65536",
+                        "key": "vm.memory.total[hrStorageSize.Memory]",
+                        "history": "7d",
+                        "units": "B",
+                        "description": "MIB: HOST-RESOURCES-MIB\nThe size of the storage represented by this entry, in\nunits of hrStorageAllocationUnits. This object is\nwritable to allow remote configuration of the size of\nthe storage area in those cases where such an\noperation makes sense and is possible on the\nunderlying system. For example, the amount of main\nmemory allocated to a buffer pool might be modified or\nthe amount of disk space allocated to virtual memory\nmight be modified.",
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "1024"
+                                ]
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Memory"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "ec4685302abe4f5f84990430a3dc5558",
+                        "name": "Used memory",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "1.3.6.1.2.1.25.2.3.1.6.65536",
+                        "key": "vm.memory.used[hrStorageUsed.Memory]",
+                        "history": "7d",
+                        "units": "B",
+                        "description": "MIB: HOST-RESOURCES-MIB\nThe amount of the storage represented by this entry that is allocated, in units of hrStorageAllocationUnits.",
+                        "preprocessing": [
+                            {
+                                "type": "MULTIPLIER",
+                                "parameters": [
+                                    "1024"
+                                ]
+                            }
+                        ],
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Memory"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "fed4b3124bb1410dadea7f36eee88c8e",
+                        "name": "Memory utilization",
+                        "type": "CALCULATED",
+                        "key": "vm.memory.util[memoryUsedPercentage.Memory]",
+                        "history": "7d",
+                        "value_type": "FLOAT",
+                        "units": "%",
+                        "params": "last(//vm.memory.used[hrStorageUsed.Memory])/last(//vm.memory.total[hrStorageSize.Memory])*100",
+                        "description": "Memory utilization in %",
+                        "tags": [
+                            {
+                                "tag": "Application",
+                                "value": "Memory"
+                            }
+                        ],
+                        "triggers": [
+                            {
+                                "uuid": "be20c981ad684015a6abb6c1f7f552bf",
+                                "expression": "min(/Template Customizado - Net Mikrotik SNMP/vm.memory.util[memoryUsedPercentage.Memory],5m)>{$MEMORY.UTIL.MAX}",
+                                "name": "High memory utilization (>{$MEMORY.UTIL.MAX}% for 5m)",
+                                "priority": "AVERAGE",
+                                "description": "The system is running out of free memory."
+                            }
+                        ]
+                    }
+                ],
+                "discovery_rules": [
+                    {
+                        "uuid": "af21105dc5374cdc951615e8d4e3be53",
+                        "name": "CPU discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},1.3.6.1.2.1.25.3.3.1.1]",
+                        "key": "hrProcessorLoad.discovery",
+                        "delay": "1h",
+                        "description": "HOST-RESOURCES-MIB::hrProcessorTable discovery",
+                        "item_prototypes": [
+                            {
+                                "uuid": "684d81069ac043438cfea5cb6f25de73",
+                                "name": "#{#SNMPINDEX}: CPU utilization",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.2.1.25.3.3.1.2.{#SNMPINDEX}",
+                                "key": "system.cpu.util[hrProcessorLoad.{#SNMPINDEX}]",
+                                "history": "7d",
+                                "value_type": "FLOAT",
+                                "units": "%",
+                                "description": "MIB: HOST-RESOURCES-MIB\nThe average, over the last minute, of the percentage of time that this processor was not idle. Implementations may approximate this one minute smoothing period if necessary.",
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "CPU"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "e21df490b4614238b1104caa6146e40b",
+                                        "expression": "min(/Template Customizado - Net Mikrotik SNMP/system.cpu.util[hrProcessorLoad.{#SNMPINDEX}],5m)>{$CPU.UTIL.CRIT}",
+                                        "name": "#{#SNMPINDEX}: High CPU utilization (over {$CPU.UTIL.CRIT}% for 5m)",
+                                        "opdata": "Current utilization: {ITEM.LASTVALUE1}",
+                                        "priority": "WARNING",
+                                        "description": "CPU utilization is too high. The system might be slow to respond."
+                                    }
+                                ]
+                            }
+                        ],
+                        "graph_prototypes": [
+                            {
+                                "uuid": "00d0f6c8bca84c07a3a8613c07ecc865",
+                                "name": "#{#SNMPINDEX}: CPU utilization",
+                                "ymin_type_1": "FIXED",
+                                "ymax_type_1": "FIXED",
+                                "graph_items": [
+                                    {
+                                        "drawtype": "GRADIENT_LINE",
+                                        "color": "1A7C11",
+                                        "item": {
+                                            "host": "Template Customizado - Net Mikrotik SNMP",
+                                            "key": "system.cpu.util[hrProcessorLoad.{#SNMPINDEX}]"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "7d73747646b943448b3ea7399a30301b",
+                        "name": "Temperature CPU discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},1.3.6.1.4.1.14988.1.1.3.11]",
+                        "key": "mtxrHlProcessorTemperature.discovery",
+                        "delay": "1h",
+                        "description": "MIKROTIK-MIB::mtxrHlProcessorTemperature\nSince temperature of CPU is not available on all Mikrotik hardware, this is done to avoid unsupported items.",
+                        "item_prototypes": [
+                            {
+                                "uuid": "5b3379aa368546e0a9d6a877caf0750b",
+                                "name": "CPU: Temperature",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.14988.1.1.3.11.{#SNMPINDEX}",
+                                "key": "sensor.temp.value[mtxrHlProcessorTemperature.{#SNMPINDEX}]",
+                                "delay": "3m",
+                                "value_type": "FLOAT",
+                                "units": "\u00b0C",
+                                "description": "MIB: MIKROTIK-MIB\nmtxrHlProcessorTemperature Processor temperature in Celsius (degrees C).\nMight be missing in entry models (RB750, RB450G..).",
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "0.1"
+                                        ]
+                                    }
+                                ],
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Temperature"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "c0738f1b0dda4903a9746626170e577b",
+                                        "expression": "avg(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlProcessorTemperature.{#SNMPINDEX}],5m)>{$TEMP_CRIT:\"CPU\"}",
+                                        "recovery_mode": "RECOVERY_EXPRESSION",
+                                        "recovery_expression": "max(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlProcessorTemperature.{#SNMPINDEX}],5m)<{$TEMP_CRIT:\"CPU\"}-3",
+                                        "name": "CPU: Temperature is above critical threshold: >{$TEMP_CRIT:\"CPU\"}",
+                                        "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                        "priority": "HIGH",
+                                        "description": "This trigger uses temperature sensor values as well as temperature sensor status if available"
+                                    },
+                                    {
+                                        "uuid": "e0ff54ebebc84f0a9d1436458de2b631",
+                                        "expression": "avg(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlProcessorTemperature.{#SNMPINDEX}],5m)>{$TEMP_WARN:\"CPU\"}",
+                                        "recovery_mode": "RECOVERY_EXPRESSION",
+                                        "recovery_expression": "max(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlProcessorTemperature.{#SNMPINDEX}],5m)<{$TEMP_WARN:\"CPU\"}-3",
+                                        "name": "CPU: Temperature is above warning threshold: >{$TEMP_WARN:\"CPU\"}",
+                                        "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                        "priority": "WARNING",
+                                        "description": "This trigger uses temperature sensor values as well as temperature sensor status if available",
+                                        "dependencies": [
+                                            {
+                                                "name": "CPU: Temperature is above critical threshold: >{$TEMP_CRIT:\"CPU\"}",
+                                                "expression": "avg(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlProcessorTemperature.{#SNMPINDEX}],5m)>{$TEMP_CRIT:\"CPU\"}",
+                                                "recovery_expression": "max(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlProcessorTemperature.{#SNMPINDEX}],5m)<{$TEMP_CRIT:\"CPU\"}-3"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uuid": "a296e13def3f49f896ca3a52e3b98093",
+                                        "expression": "avg(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlProcessorTemperature.{#SNMPINDEX}],5m)<{$TEMP_CRIT_LOW:\"CPU\"}",
+                                        "recovery_mode": "RECOVERY_EXPRESSION",
+                                        "recovery_expression": "min(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlProcessorTemperature.{#SNMPINDEX}],5m)>{$TEMP_CRIT_LOW:\"CPU\"}+3",
+                                        "name": "CPU: Temperature is too low: <{$TEMP_CRIT_LOW:\"CPU\"}",
+                                        "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                        "priority": "AVERAGE"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "7181397bff2240a88469f8ef309fd508",
+                        "name": "Temperature sensor discovery",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": "discovery[{#SNMPVALUE},1.3.6.1.4.1.14988.1.1.3.10]",
+                        "key": "mtxrHlTemperature.discovery",
+                        "delay": "1h",
+                        "description": "MIKROTIK-MIB::mtxrHlTemperature\nSince temperature sensor is not available on all Mikrotik hardware,\nthis is done to avoid unsupported items.",
+                        "item_prototypes": [
+                            {
+                                "uuid": "657763042c9f4eff95cb06307ddbbde1",
+                                "name": "Device: Temperature",
+                                "type": "SNMP_AGENT",
+                                "snmp_oid": "1.3.6.1.4.1.14988.1.1.3.10.{#SNMPINDEX}",
+                                "key": "sensor.temp.value[mtxrHlTemperature.{#SNMPINDEX}]",
+                                "delay": "3m",
+                                "value_type": "FLOAT",
+                                "units": "\u00b0C",
+                                "description": "MIB: MIKROTIK-MIB\nmtxrHlTemperature Device temperature in Celsius (degrees C).\nMight be missing in entry models (RB750, RB450G..).\n\nReference: http://wiki.mikrotik.com/wiki/Manual:SNMP",
+                                "preprocessing": [
+                                    {
+                                        "type": "MULTIPLIER",
+                                        "parameters": [
+                                            "0.1"
+                                        ]
+                                    }
+                                ],
+                                "tags": [
+                                    {
+                                        "tag": "Application",
+                                        "value": "Temperature"
+                                    }
+                                ],
+                                "trigger_prototypes": [
+                                    {
+                                        "uuid": "475bd0a2fc0949679ddbcfd5f6522559",
+                                        "expression": "avg(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlTemperature.{#SNMPINDEX}],5m)>{$TEMP_CRIT:\"Device\"}",
+                                        "recovery_mode": "RECOVERY_EXPRESSION",
+                                        "recovery_expression": "max(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlTemperature.{#SNMPINDEX}],5m)<{$TEMP_CRIT:\"Device\"}-3",
+                                        "name": "Device: Temperature is above critical threshold: >{$TEMP_CRIT:\"Device\"}",
+                                        "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                        "priority": "HIGH",
+                                        "description": "This trigger uses temperature sensor values as well as temperature sensor status if available"
+                                    },
+                                    {
+                                        "uuid": "a3276bcb54fa4359aacddab63aeef80a",
+                                        "expression": "avg(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlTemperature.{#SNMPINDEX}],5m)>{$TEMP_WARN:\"Device\"}",
+                                        "recovery_mode": "RECOVERY_EXPRESSION",
+                                        "recovery_expression": "max(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlTemperature.{#SNMPINDEX}],5m)<{$TEMP_WARN:\"Device\"}-3",
+                                        "name": "Device: Temperature is above warning threshold: >{$TEMP_WARN:\"Device\"}",
+                                        "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                        "priority": "WARNING",
+                                        "description": "This trigger uses temperature sensor values as well as temperature sensor status if available",
+                                        "dependencies": [
+                                            {
+                                                "name": "Device: Temperature is above critical threshold: >{$TEMP_CRIT:\"Device\"}",
+                                                "expression": "avg(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlTemperature.{#SNMPINDEX}],5m)>{$TEMP_CRIT:\"Device\"}",
+                                                "recovery_expression": "max(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlTemperature.{#SNMPINDEX}],5m)<{$TEMP_CRIT:\"Device\"}-3"
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "uuid": "956e60b52389402db72c13f803761afd",
+                                        "expression": "avg(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlTemperature.{#SNMPINDEX}],5m)<{$TEMP_CRIT_LOW:\"Device\"}",
+                                        "recovery_mode": "RECOVERY_EXPRESSION",
+                                        "recovery_expression": "min(/Template Customizado - Net Mikrotik SNMP/sensor.temp.value[mtxrHlTemperature.{#SNMPINDEX}],5m)>{$TEMP_CRIT_LOW:\"Device\"}+3",
+                                        "name": "Device: Temperature is too low: <{$TEMP_CRIT_LOW:\"Device\"}",
+                                        "opdata": "Current value: {ITEM.LASTVALUE1}",
+                                        "priority": "AVERAGE"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "macros": [
+                    {
+                        "macro": "{$CPU.UTIL.CRIT}",
+                        "value": "90"
+                    },
+                    {
+                        "macro": "{$IFNAME.LTEMODEM.MATCHES}",
+                        "value": "^lte",
+                        "description": "This macro is used in LTE modem discovery. It can be overridden on the host."
+                    },
+                    {
+                        "macro": "{$IFNAME.WIFI.MATCHES}",
+                        "value": "WIFI",
+                        "description": "This macro is used in CAPsMAN AP channel discovery. It can be overridden on the host level."
+                    },
+                    {
+                        "macro": "{$LTEMODEM.RSRP.MIN.WARN}",
+                        "value": "-100",
+                        "description": "The LTE modem RSRP minimum value for warning trigger expression."
+                    },
+                    {
+                        "macro": "{$LTEMODEM.RSRQ.MIN.WARN}",
+                        "value": "-20",
+                        "description": "The LTE modem RSRQ minimum value for warning trigger expression."
+                    },
+                    {
+                        "macro": "{$LTEMODEM.RSSI.MIN.WARN}",
+                        "value": "-100",
+                        "description": "The LTE modem RSSI minimum value for warning trigger expression."
+                    },
+                    {
+                        "macro": "{$LTEMODEM.SINR.MIN.WARN}",
+                        "value": "0",
+                        "description": "The LTE modem SINR minimum value for warning trigger expression."
+                    },
+                    {
+                        "macro": "{$MEMORY.UTIL.MAX}",
+                        "value": "90"
+                    },
+                    {
+                        "macro": "{$TEMP_CRIT}",
+                        "value": "60"
+                    },
+                    {
+                        "macro": "{$TEMP_CRIT:\"CPU\"}",
+                        "value": "75"
+                    },
+                    {
+                        "macro": "{$TEMP_CRIT_LOW}",
+                        "value": "5"
+                    },
+                    {
+                        "macro": "{$TEMP_WARN}",
+                        "value": "50"
+                    },
+                    {
+                        "macro": "{$TEMP_WARN:\"CPU\"}",
+                        "value": "70"
+                    },
+                    {
+                        "macro": "{$VFS.FS.PUSED.MAX.CRIT}",
+                        "value": "90"
+                    },
+                    {
+                        "macro": "{$VFS.FS.PUSED.MAX.WARN}",
+                        "value": "80"
+                    }
+                ]
+            }
+        ],
+        "graphs": [
+            {
+                "uuid": "6c7e9668f16240689256b745d0eaf544",
+                "name": "Memory utilization",
+                "ymin_type_1": "FIXED",
+                "ymax_type_1": "FIXED",
+                "graph_items": [
+                    {
+                        "drawtype": "GRADIENT_LINE",
+                        "color": "1A7C11",
+                        "item": {
+                            "host": "Template Customizado - Net Mikrotik SNMP",
+                            "key": "vm.memory.util[memoryUsedPercentage.Memory]"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,162 @@
+{
+    "zabbix_export": {
+        "version": "6.0",
+        "date": "2022-04-15T14:40:24Z",
+        "groups": [
+            {
+                "uuid": "7df96b18c230490a9a0a9e2307226338",
+                "name": "Templates"
+            }
+        ],
+        "templates": [
+            {
+                "uuid": "253856b7d3ed4568929a614f271bede0",
+                "template": "Template Customizado - DVR Intelbras 8 Canais",
+                "name": "Template Customizado - DVR Intelbras 8 Canais",
+                "groups": [
+                    {
+                        "name": "Templates"
+                    }
+                ],
+                "items": [
+                    {
+                        "uuid": "1b76435e9ca54dc9ac275ddbb882843b",
+                        "name": "Camera 01",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.1",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.1",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "8930b942c36e4160932e53fe221abb43",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 8 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.1,1d)=0",
+                                "name": "Camera 01 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "0d789febf05149b5a1ab5b9058cefa27",
+                        "name": "Camera 02",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.2",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.2",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "f3038c409efb455f9402ec8404d155f6",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 8 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.2,1d)=0",
+                                "name": "Camera 02 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "6610933e2a75462ebbf5ec01d98663e0",
+                        "name": "Camera 03",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.3",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.3",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "97beb29cc35f47babb770803d470cd91",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 8 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.3,1d)=0",
+                                "name": "Camera 03 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "144db7b0a5bd4fec877bbd45e9d8240a",
+                        "name": "Camera 04",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.4",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.4",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "80ce6a7e9e1048a099b6db5087801d0f",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 8 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.4,1d)=0",
+                                "name": "Camera 04 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "432a19eb649e4da59b5c7f4b145a44e0",
+                        "name": "Camera 05",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.5",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.5",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "4f5d0f2e4d554b3aa5206e1dabaaa8c9",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 8 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.5,1d)=0",
+                                "name": "Camera 05 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "739b1aff8e5c4f8d87b5c60153a0e17f",
+                        "name": "Camera 06",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.6",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.6",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "6b67d9d7c34a46479308ca93e0416edf",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 8 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.6,1d)=0",
+                                "name": "Camera 06 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "bf640b342861404886b4a6abe6311b64",
+                        "name": "Camera 07",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.7",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.7",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "7a3cce4f45fb453d9e6f19552b2481bd",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 8 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.7,1d)=0",
+                                "name": "Camera 07 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    },
+                    {
+                        "uuid": "b55a85adc4254e729a3cfa744a73bc14",
+                        "name": "Camera 08",
+                        "type": "SNMP_AGENT",
+                        "snmp_oid": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.8",
+                        "key": ".1.3.6.1.4.1.1004849.2.10.1.1.1.2.8",
+                        "delay": "5m",
+                        "triggers": [
+                            {
+                                "uuid": "73821b1ef4b541f789843cd3c7760f18",
+                                "expression": "avg(/Template Customizado - DVR Intelbras 8 Canais/.1.3.6.1.4.1.1004849.2.10.1.1.1.2.8,1d)=0",
+                                "name": "Camera 08 est\u00e1 sem imagem",
+                                "priority": "WARNING",
+                                "manual_close": "YES"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}
